@@ -135,7 +135,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-.loan_approval_env/
+loan_approval_env/
+
 
 # Spyder project settings
 .spyderproject
