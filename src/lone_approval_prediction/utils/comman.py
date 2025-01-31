@@ -54,7 +54,7 @@ def load_bin(path:Path) -> Any:
     logger.info(f"binary file loaded from :{path}")
     return data
 
-@ensure_annotations
+#@ensure_annotations
 def get_size(path:Path) -> str:
     size_in_kb = round(os.getsize(path)/1024)
     return f" ~ {size_in_kb} KB"
