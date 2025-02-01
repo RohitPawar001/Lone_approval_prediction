@@ -4,8 +4,9 @@ import shutil
 import os
 import urllib.request as request
 from pathlib import Path
-from lone_approval_prediction import logging
+from lone_approval_prediction import logger
 from lone_approval_prediction.utils.comman import get_size
+
 
 
 class DataIngestion:
