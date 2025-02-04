@@ -1,2 +1,17 @@
-data_ingest:
-  a :12
+COLUMNS:
+  loan_id: int64
+  no_of_dependents: int64
+  education: object
+  self_employed: object
+  income_annum: int64
+  loan_amount: int64
+  loan_term: int64
+  cibil_score: int64
+  residential_assets_value: int64
+  commercial_assets_value: int64
+  luxury_assets_value: int64
+  bank_asset_value: int64
+
+
+TARGET_COLUMN:
+  loan_status: object

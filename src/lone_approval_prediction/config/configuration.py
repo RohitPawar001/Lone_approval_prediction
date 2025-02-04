@@ -4,7 +4,8 @@ import urllib.request as request
 from lone_approval_prediction.constants import *
 from lone_approval_prediction import logger
 from lone_approval_prediction.utils.comman import create_directories, read_yaml
-from lone_approval_prediction.entity.config_entity import DataIngestionConfig
+from lone_approval_prediction.entity.config_entity import (DataIngestionConfig,
+                                                          DataValidationconfig)
 
 
 class ConfigurationManager:
@@ -35,4 +36,21 @@ class ConfigurationManager:
         )
         
         return data_ingestion_config
+    
+    
+    def get_data_validation_config(self) -> DataValidationconfig:
+        config = self.config.data_validation
+        schema = self.schema.COLUMNS
+        
+        create_directories([config.root_dir])
+        
+        data_validation_config = DataValidationconfig(
+            root_dir= config.root_dir,
+            unzip_dir= config.unzip_dir,
+            STATUS_FILE= config.STATUS_FILE,
+            all_schema= schema
+    
+        )
+        
+        return data_validation_config
     
