@@ -5,7 +5,8 @@ from lone_approval_prediction.constants import *
 from lone_approval_prediction import logger
 from lone_approval_prediction.utils.comman import create_directories, read_yaml
 from lone_approval_prediction.entity.config_entity import (DataIngestionConfig,
-                                                          DataValidationconfig)
+                                                          DataValidationconfig,
+                                                          DataTransformationConfig)
 
 
 class ConfigurationManager:
@@ -53,4 +54,16 @@ class ConfigurationManager:
         )
         
         return data_validation_config
+    
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        config = self.config["data_transformation"]
+        
+        create_directories([config["root_dir"]])
+        
+        data_transformation_config = DataTransformationConfig(
+            root_dir = config.root_dir,
+            data_file_path = config.data_file_path            
+        )
+        
+        return data_transformation_config
     
