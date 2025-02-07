@@ -21,3 +21,12 @@ class DataTransformationConfig:
     root_dir : Path
     data_file_path : Path
     
+@dataclass
+class ModelTrainerConfig:
+    root_dir: Path
+    x_train_data_path : Path
+    y_train_data_path : Path
+    model_name : str
+    C : float
+    penalty : str
+    

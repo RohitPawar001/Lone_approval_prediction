@@ -6,7 +6,8 @@ from lone_approval_prediction import logger
 from lone_approval_prediction.utils.comman import create_directories, read_yaml
 from lone_approval_prediction.entity.config_entity import (DataIngestionConfig,
                                                           DataValidationconfig,
-                                                          DataTransformationConfig)
+                                                          DataTransformationConfig,
+                                                          ModelTrainerConfig)
 
 
 class ConfigurationManager:
@@ -66,4 +67,22 @@ class ConfigurationManager:
         )
         
         return data_transformation_config
+    
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.model_trainer
+        params = self.params.logisticRegressor
+        schema = self.schema.TARGET_COLUMN
+        
+        create_directories([config.root_dir])
+        
+        model_trainer_config = ModelTrainerConfig(
+            root_dir = config.root_dir,
+            x_train_data_path = config.x_train_data_path,
+            y_train_data_path = config.y_train_data_path,
+            model_name = config.model_name,
+            C = params.C,
+            penalty = params.penalty,
+            )
+        
+        return model_trainer_config
     
