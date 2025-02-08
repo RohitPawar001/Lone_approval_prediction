@@ -53,7 +53,7 @@ class DataTransformation:
 
         X = data[top_features]
 
-        X_train, X_test_, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
         
         scaler = StandardScaler()
         
@@ -75,8 +75,10 @@ class DataTransformation:
         X_train = pd.DataFrame(X_train, columns=X.columns)
         
 
-        X_train.to_csv(os.path.join(self.config.root_dir, "train.csv"), index=False)
+        X_train.to_csv(os.path.join(self.config.root_dir, "x_train.csv"), index=False)
         y_train.to_csv(os.path.join(self.config.root_dir, "y_train.csv"), index=False)
+        X_test.to_csv(os.path.join(self.config.root_dir, "x_test.csv"), index=False)
+        y_test.to_csv(os.path.join(self.config.root_dir, "y_test.csv"), index=False)
         
         logger.info("Splited data into train and test sets")
         
