@@ -7,7 +7,8 @@ from lone_approval_prediction.utils.comman import create_directories, read_yaml
 from lone_approval_prediction.entity.config_entity import (DataIngestionConfig,
                                                           DataValidationconfig,
                                                           DataTransformationConfig,
-                                                          ModelTrainerConfig)
+                                                          ModelTrainerConfig,
+                                                          ModelEvaluationConfig)
 
 
 class ConfigurationManager:
@@ -85,4 +86,23 @@ class ConfigurationManager:
             )
         
         return model_trainer_config
+    
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        config = self.config.model_evaluation
+        params = self.params.logisticRegressor
+        schema = self.schema.TARGET_COLUMN
+        
+        create_directories([config.root_dir])
+        
+        model_evaluation_config = ModelEvaluationConfig(
+            root_dir = config.root_dir,
+            x_test_data_path = config.x_test_data_path,
+            y_test_data_path = config.y_test_data_path,
+            model_path = config.model_path,
+            all_params = params,
+            metric_file_name = config.metric_file_name,
+            mlflow_uri = "https://dagshub.com/rppawar491/Lone_approval_prediction.mlflow"
+        )
+        
+        return model_evaluation_config
     
