@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .results-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .result-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #e1e1e1;
+            text-align: center;
+        }
+
+        .result-value {
+            font-size: 2.5rem;
+            color: #1e3c72;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .result-label {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .primary-button {
+            background: #1e3c72;
+            color: white;
+            border: none;
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: #1e3c72;
+            border: 2px solid #1e3c72;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .primary-button:hover {
+            background: #2a5298;
+        }
+
+        .secondary-button:hover {
+            background: rgba(30, 60, 114, 0.1);
+        }
+
+        .result-details {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(30, 60, 114, 0.1);
+            border-radius: 8px;
+        }
+
+        .result-details p {
+            color: #444;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .results-container {
+                padding: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .result-value {
+                font-size: 2rem;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="results-container animate-in">
+        <div class="header">
+            <h1>Prediction Results</h1>
+            <p>Here's what we found based on your inputs</p>
+        </div>
+
+        <div class="result-box">
+            <div class="result-label">Predicted Value</div>
+            <div class="result-value">{{ predictions }}</div>
+        </div>
+
+        <div class="result-details">
+            <p>This prediction was generated based on the input parameters you provided. The model has analyzed the data and provided the result above.</p>
+        </div>
+
+        <div class="actions">
+            <a href="/" class="button secondary-button">Make Another Prediction</a>
+            <a href="#" onclick="window.print()" class="button primary-button">Download Results</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Approval Prediction</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #1a2980, #26d0ce);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+            transform: translateY(20px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        h1 {
+            color: #1a2980;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.8rem;
+            position: relative;
+            animation: slideIn 0.6s ease both;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1a2980;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .input-group input:focus {
+            border-color: #1a2980;
+            box-shadow: 0 0 0 3px rgba(26, 41, 128, 0.1);
+            outline: none;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 45px;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .input-group:focus-within .input-icon {
+            color: #1a2980;
+            transform: scale(1.1);
+        }
+
+        .helper-text {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #1a2980, #26d0ce);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(26, 41, 128, 0.2);
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        button:hover::after {
+            left: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        .input-group {
+            animation-delay: calc(var(--i) * 0.1s);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Loan Approval Predictor</h1>
+            <p class="subtitle">Fill in your details for instant loan eligibility check</p>
+        </div>
+        <form action="/prediction" method="POST">
+            <div class="input-group" style="--i:1">
+                <label for="cibil_score">CIBIL Score</label>
+                <input type="number" name="Cibil Score" id="cibil_score" required placeholder="Enter your CIBIL score">
+                <i class="fas fa-chart-line input-icon"></i>
+                <span class="helper-text">Your credit score (usually between 300-900)</span>
+            </div>
+
+            <div class="input-group" style="--i:2">
+                <label for="loan_term">Loan Term</label>
+                <input type="number" name="Loan Term" id="loan_term" required placeholder="Enter loan term in months">
+                <i class="fas fa-calendar-alt input-icon"></i>
+                <span class="helper-text">Duration of the loan in months</span>
+            </div>
+
+            <div class="input-group" style="--i:3">
+                <label for="education">Education Status</label>
+                <input type="number" name="Education" id="education" required placeholder="1 for Graduate, 0 for Non-Graduate">
+                <i class="fas fa-graduation-cap input-icon"></i>
+                <span class="helper-text">Enter 1 if you're a graduate, 0 if not</span>
+            </div>
+
+            <div class="input-group" style="--i:4">
+                <label for="family_members">Number of Dependents</label>
+                <input type="number" name="Family Members" id="family_members" required placeholder="Number of dependent family members">
+                <i class="fas fa-users input-icon"></i>
+                <span class="helper-text">Number of family members depending on you</span>
+            </div>
+
+            <div class="input-group" style="--i:5">
+                <label for="employment">Employment Type</label>
+                <input type="number" name="Employment" id="employment" required placeholder="1 for Self-employed, 0 for Employed">
+                <i class="fas fa-briefcase input-icon"></i>
+                <span class="helper-text">Enter 1 if self-employed, 0 if employed</span>
+            </div>
+
+            <button type="submit">
+                Check Loan Eligibility
+            </button>
+        </form>
+    </div>
+</body>
+</html>
