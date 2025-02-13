@@ -5,7 +5,13 @@ This project aims to predict loan approval using machine learning techniques. It
 
 ## Demo Video
 
-[![Watch the video](https://via.placeholder.com/800x450.png?text=Demo+Video)]([https://github.com/RohitPawar001/datasets/raw/refs/heads/main/lone_approval_prediction.mp4](https://github.com/RohitPawar001/datasets/blob/main/lone_approval_prediction.mp4))
+# Loan Approval Prediction
+
+This repository contains the code and resources for predicting loan approval status using machine learning models.
+
+## Demo Video
+
+[![Watch the video](https://via.placeholder.com/800x450.png?text=Demo+Video)](https://github.com/RohitPawar001/datasets/raw/refs/heads/main/lone_approval_prediction.mp4)
 ## Features
 - Data ingestion and preprocessing
 - Machine learning model training and evaluation
